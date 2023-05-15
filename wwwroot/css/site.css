@@ -2,6 +2,12 @@ html {
   font-size: 14px;
 }
 
+:root {
+  --color-checked: #FF6600;
+  --color-nav: #1E1F24;
+  --color-body: #101114;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -19,4 +25,17 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: var(--color-body);
+}
+
+#navbar {
+  background-color: var(--color-nav);
+  margin-bottom: 0;
+  padding-bottom: 0;
+  
+}
+
+#logo {
+  background: none;
+  border-color: transparent;
 }
