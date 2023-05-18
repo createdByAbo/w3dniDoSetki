@@ -39,3 +39,24 @@ body {
   background: none;
   border-color: transparent;
 }
+
+#banner {
+  background-image: url("../images/rsz_11920x550_bg1.jpg");
+  margin: auto;
+  width: 50%;
+  padding: 25vh;
+  background-position: center;
+  background-attachment: fixed;
+  border-color: transparent;
+  border-radius: 2%;
+  opacity: 0.9;
+}
+
+#filtering {
+  margin: -70%;
+  width: 100%;
+  background-color: white;
+  opacity: 0.3;
+  border-top-left-radius: 20%;
+  border-bottom-left-radius: 20%;
+}

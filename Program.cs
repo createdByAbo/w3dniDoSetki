@@ -1,7 +1,13 @@
+using w3dniDoSetki;
+using w3dniDoSetki.Services;
+using static w3dniDoSetki.W3dnidosetkiContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<W3dnidosetkiContext>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
@@ -23,5 +29,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "api",
+    pattern: "api/{controller=User}/{action=Index}/{id?}");
 
 app.Run();

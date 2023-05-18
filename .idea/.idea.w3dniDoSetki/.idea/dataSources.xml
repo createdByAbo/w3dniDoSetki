@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="w3dnidosetki@w3dnidosetkidb.cz3xaixhjx2j.eu-north-1.rds.amazonaws.com" uuid="b2c676b3-a5db-4f04-adf6-9d3650e578b5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://w3dnidosetkidb.cz3xaixhjx2j.eu-north-1.rds.amazonaws.com:5432/w3dnidosetki</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
