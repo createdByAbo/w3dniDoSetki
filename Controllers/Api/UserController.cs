@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using w3dniDoSetki.Exceptions;
+using w3dniDoSetki.Models;
 using w3dniDoSetki.Services;
 
 
@@ -16,7 +19,14 @@ public class UserController : Controller
     [HttpGet]
     public ActionResult Id(int id) //get user by id
     {
-        var u = _userService.GetUserById(id);
-        return Ok(u);
+        try
+        {
+            var u = _userService.GetUserById(id);
+            return Ok(u);
+        }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
     }
 }

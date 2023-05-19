@@ -11,11 +11,15 @@ public partial class User
 
     public string LastName { get; set; } = null!;
 
-    public string? Email { get; set; }
+    public string Email { get; set; } = null!;
 
-    public string? PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; } = null!;
 
     public bool IsAdmin { get; set; }
 
     public bool IsVerified { get; set; }
+
+    public string PasswordHash { get; set; } = null!;
+
+    public virtual ICollection<Car1> Car1s { get; } = new List<Car1>();
 }

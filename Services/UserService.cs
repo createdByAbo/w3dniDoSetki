@@ -1,3 +1,5 @@
+using w3dniDoSetki.Exceptions;
+
 namespace w3dniDoSetki.Services;
 
 using Entities;
@@ -20,6 +22,7 @@ public class UserService : IUserService
     {
         try
         {
+            DotNetEnv.Env.Load(".env");
             var user = _context.Users
                 .Where(u => u.Id == id)
                 .First();
@@ -27,7 +30,7 @@ public class UserService : IUserService
         }
         catch (InvalidOperationException)
         {
-            return new User();
+            throw new NotFoundException();
         }
     }
 }
