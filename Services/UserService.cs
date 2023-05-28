@@ -1,4 +1,6 @@
+using DevOne.Security.Cryptography.BCrypt;
 using w3dniDoSetki.Exceptions;
+using w3dniDoSetki.Models.DTOs;
 
 namespace w3dniDoSetki.Services;
 
@@ -6,7 +8,7 @@ using Entities;
 
 public interface IUserService
 {
-    User GetUserById(int id);
+    bool Login(LoginDto userData);
 }
 
 public class UserService : IUserService
@@ -18,17 +20,17 @@ public class UserService : IUserService
         _context = context;
     }
 
-    public User GetUserById(int id)
+    public bool Login(LoginDto userData)
     {
-        try
+        var usr = _context.Users
+            .Where(u => u.Email == userData.Email)
+            .Where(u => u.IsVerified == true)
+            .First();
+        if (BCryptHelper.CheckPassword(userData.Password, usr.PasswordHash))
         {
-            DotNetEnv.Env.Load(".env");
-            var user = _context.Users
-                .Where(u => u.Id == id)
-                .First();
-            return user;
+            return true;
         }
-        catch (InvalidOperationException)
+        else
         {
             throw new NotFoundException();
         }

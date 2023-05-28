@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using dotenv.net;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using w3dniDoSetki.Entities;
-
 
 namespace w3dniDoSetki;
 
 public partial class W3dnidosetkiContext : DbContext
 {
+    
     public W3dnidosetkiContext()
     {
+        
+        DotEnv.Load();
     }
 
     public W3dnidosetkiContext(DbContextOptions<W3dnidosetkiContext> options)
@@ -24,11 +29,10 @@ public partial class W3dnidosetkiContext : DbContext
     public virtual DbSet<Carmodel> Carmodels { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("DBCONN"));
-
+        => optionsBuilder.UseNpgsql(Env.GetString("DBCONN"));
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -39,7 +43,6 @@ public partial class W3dnidosetkiContext : DbContext
             .HasPostgresEnum("condition", new[] { "Used", "New" })
             .HasPostgresEnum("fuel", new[] { "Diesel", "Benzyna", "LPG", "Hybrid", "Elektryczny" })
             .HasPostgresEnum("gearbox", new[] { "Manual", "Automat", "Bezstopniowa" });
-
         modelBuilder.Entity<Car>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("car_pkey");
@@ -47,6 +50,9 @@ public partial class W3dnidosetkiContext : DbContext
             entity.ToTable("car");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Make)
+                .HasMaxLength(20)
+                .HasColumnName("make");
         });
 
         modelBuilder.Entity<Car1>(entity =>

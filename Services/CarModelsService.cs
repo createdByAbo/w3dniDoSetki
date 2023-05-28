@@ -1,31 +1,44 @@
 using dotenv.net;
 using DotNetEnv;
 using Newtonsoft.Json;
+using w3dniDoSetki.Exceptions;
 
 namespace w3dniDoSetki.Services;
 
-public interface ICarBrandsService
+public interface ICarModelsService
 {
-    void WriteBrandsToJson();
+    string WriteModelsToJson();
 }
-public class CarBrandsService : ICarBrandsService
+public class CarModelsService : ICarModelsService
 {
     private readonly W3dnidosetkiContext _context;
 
-    public CarBrandsService(W3dnidosetkiContext context)
+    public CarModelsService(W3dnidosetkiContext context)
     {
         _context = context;
     }
 
-    public void WriteBrandsToJson()
+    public string WriteModelsToJson()
     {
-        var json = _context.Cars
-            .ToList();
-        List<string> brands = new List<string>();
-        for (int i = 0; i < json.Count; i++)
+        List<List<string>> data = new List<List<string>>();
+        int x = Int32.MaxValue;
+        for (int i = 1; i <= _context.Carmodels.Max( cm => cm.Brandid) + 1; i++)
         {
-            brands.Add(json[i].Make);
+            List<string> models = new List<string>();
+            var json = _context.Carmodels
+                .Where(cm => cm.Brandid == i)
+                .ToList();
+            for (int j = 0; j < json.Count; j++)
+            {
+                models.Add(json[j].Model);
+            }
+
+            List<string> modelswb = new List<string>();
+            modelswb.Add($"{i}");
+            modelswb.Add(JsonConvert.SerializeObject(models).ToString());
+            data.Add(modelswb);
         }
-        File.WriteAllText("./JSON/brands.json", JsonConvert.SerializeObject(brands));
+        File.WriteAllText("./JSON/models.json", JsonConvert.SerializeObject(data).Replace(@"\", ""));
+        return "";
     }
 }

@@ -1,8 +1,11 @@
-@model TModel
-
+@using w3dniDoSetki.Services
+@using w3dniDoSetki.Entities
 @{
-    ViewBag.Title = "title";
     Layout = "_Layout";
 }
+@inject CarsService CarsService;
 
-<h2>title</h2>
+@foreach (Car1 car in CarsService.GetAllCars(10))
+{
+    <p>@car.Model</p>
+}

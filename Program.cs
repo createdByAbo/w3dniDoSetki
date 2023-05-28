@@ -1,13 +1,37 @@
+using dotenv.net;
+using DotNetEnv;
+using Microsoft.IdentityModel.Tokens;
 using w3dniDoSetki;
 using w3dniDoSetki.Services;
-using static w3dniDoSetki.W3dnidosetkiContext;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<W3dnidosetkiContext>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<ICarBrandsService, CarBrandsService>();
+builder.Services.AddSingleton<CarsService>();
+builder.Services.AddSingleton<IUserService, UserService>();
+
+
+DotEnv.Load();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateAudience = true,
+        ValidAudience = "domain.com",
+        ValidateIssuer = true,
+        ValidIssuer = "domain.com",
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Env.GetString("SecKey")))
+    };
+});
 
 var app = builder.Build();
 

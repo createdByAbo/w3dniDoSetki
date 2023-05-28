@@ -5,29 +5,20 @@ using w3dniDoSetki.Services;
 
 namespace w3dniDoSetki.Controllers;
 
-public class HomeController : Controller
+public class CarsController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly ICarBrandsService _carBrandsService;
-    private readonly ICarModelsService _carModelsService;
+    private readonly ILogger<CarsController> _logger;
 
-    public HomeController(ILogger<HomeController> logger, ICarBrandsService carBrandsService)
+    public CarsController(ILogger<CarsController> logger, ICarBrandsService carBrandsService)
     {
         _logger = logger;
-        _carBrandsService = carBrandsService;
     }
 
-    public IActionResult Index()
-    {
-        _carBrandsService.WriteBrandsToJson();
-        return View();
-    }
-
-    public IActionResult Login()
+    public IActionResult AllCars()
     {
         return View();
     }
-
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
