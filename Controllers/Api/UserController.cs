@@ -1,8 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using w3dniDoSetki.Entities;
-using w3dniDoSetki.Exceptions;
-using w3dniDoSetki.Models;
 using w3dniDoSetki.Services;
 
 
