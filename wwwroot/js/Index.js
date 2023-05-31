@@ -8,10 +8,7 @@ for (let i = 0; i < myJson.Brands.length; i++) {
     document.getElementById("filtering-select-brand").appendChild(option);
 }
 
-function addModelsByBrandName(brand){
-    
-    
-    document.getElementById("filtering").appendChild(sel)
-}
-
-document.getElementById("filtering-select-brand").addEventListener('change', addModelsByBrandName(document.getElementById("filtering-select-brand").innerHTML))
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const token = urlParams.get('token');
+console.log(token);
