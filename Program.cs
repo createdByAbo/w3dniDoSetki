@@ -1,3 +1,4 @@
+using System.Text;
 using dotenv.net;
 using DotNetEnv;
 using Microsoft.IdentityModel.Tokens;
@@ -6,32 +7,45 @@ using w3dniDoSetki.Services;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using w3dniDoSetki.JWT;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var authenticationSettings = new AuthSettings();
+
 // Add services to the container.
 builder.Services.AddSingleton<W3dnidosetkiContext>();
-builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<ICarBrandsService, CarBrandsService>();
-builder.Services.AddSingleton<CarsService>();
-builder.Services.AddSingleton<IUserService, UserService>();
 
+builder.Services.AddScoped<ICarBrandsService, CarBrandsService>();
+builder.Services.AddScoped<ICarsService, CarsService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddControllersWithViews();
+
+builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
+
+
+builder.Services.AddSingleton(authenticationSettings);
 
 DotEnv.Load();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+builder.Services.AddAuthentication(options =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters
+    options.DefaultAuthenticateScheme = "Bearer";
+    options.DefaultScheme = "Bearer";
+    options.DefaultChallengeScheme = "Bearer";
+}).AddJwtBearer(config =>
+{
+    config.RequireHttpsMetadata = true;
+    config.SaveToken = true;
+    config.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateAudience = true,
-        ValidAudience = "domain.com",
-        ValidateIssuer = true,
-        ValidIssuer = "domain.com",
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Env.GetString("SecKey")))
+        ValidIssuer = "https://ex.com",
+        ValidAudience = "https://ex.com",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Env.GetString("SecKey")))
     };
 });
+
 
 var app = builder.Build();
 
@@ -48,8 +62,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 
+app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

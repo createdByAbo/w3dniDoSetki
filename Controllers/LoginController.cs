@@ -28,14 +28,7 @@ public class LoginController : Controller
         LoginDto LoginData = new LoginDto(collection["Email"], collection["Password"]);
         try
         {
-            if (_userService.Login(LoginData))
-            {
-                return View("Index");
-            }
-            else
-            {
-                return View("Error");
-            }
+            return RedirectToAction("Index", "Home", new { token = _userService.Login(LoginData) });
         }
         catch (Exception)
         {

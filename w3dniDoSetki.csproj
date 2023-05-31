@@ -38,6 +38,7 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Cars\AllCars.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Cars\AllCars.cshtml" />
     </ItemGroup>
 
 </Project>

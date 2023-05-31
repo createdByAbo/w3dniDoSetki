@@ -3,7 +3,7 @@
 @{
     Layout = "_Layout";
 }
-@inject CarsService CarsService;
+@inject ICarsService CarsService;
 
 @foreach (Car1 car in CarsService.GetAllCars(10))
 {

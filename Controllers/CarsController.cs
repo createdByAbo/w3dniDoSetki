@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using w3dniDoSetki.Models;
 using w3dniDoSetki.Services;
@@ -9,7 +10,7 @@ public class CarsController : Controller
 {
     private readonly ILogger<CarsController> _logger;
 
-    public CarsController(ILogger<CarsController> logger, ICarBrandsService carBrandsService)
+    public CarsController(ILogger<CarsController> logger)
     {
         _logger = logger;
     }
