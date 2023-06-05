@@ -43,7 +43,8 @@ body {
 #banner {
   background-image: url("../images/rsz_11920x550_bg1.jpg");
   margin: auto;
-  width: 50%;
+  width: 90%;
+  height: 80vh;
   padding: 25vh;
   background-position: center;
   background-attachment: fixed;
@@ -53,10 +54,34 @@ body {
 }
 
 #filtering {
+  z-index: 69;
   margin: -70%;
   width: 100%;
   background-color: white;
-  opacity: 0.3;
+  opacity: 1;
   border-top-left-radius: 20%;
   border-bottom-left-radius: 20%;
+}
+
+.antinigger {
+  z-index: 68;
+  background-color: rgb(255 255 255 / 30%);
+  border-top-left-radius: 2%;
+  border-bottom-left-radius: 2%;
+  width: 100vh;
+  height: 50vh;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-nav);
+  color: var(--color-checked);
+}
+
+.btn-primary {
+  background-color: var(--color-checked);
+  color: var(--color-nav);
+}
+
+.text-center {
+  color: var(--color-checked);
 }

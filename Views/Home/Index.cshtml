@@ -1,17 +1,119 @@
-﻿@using w3dniDoSetki.Services
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="align-items-lg-center" id="banner">
-    <ul id="filtering">
-        <select class="form-select" id="filtering-select-brand"></select>
-        <select class="form-select" id="filtering-select-model"></select>
-    </ul>
-    @for (int i = 0; i < 5; i++)
-    {
-        @: <p class=i>i</p>;
-    }
+	<div class="container-fluid">
+        <div class="antinigger">
+            <form class="container">
+                        <div class="row">
+                          <div class="col">
+                            <label for="filtering-select-brand">Marka:</label>
+                            <select class="form-control" id="filtering-select-brand" name="brand">
+                            </select>
+                          </div>
+                          <div class="col">
+                            <label for="yearMin">Rocznik:</label>
+                            <input type="number" class="form-control" id="yearMin" name="yearMin" placeholder="Min">
+                          </div>
+                          <div class="col">
+                            <label for="yearMax">&nbsp;</label>
+                            <input type="number" class="form-control" id="yearMax" name="yearMax" placeholder="Max">
+                          </div>
+                          <div class="col">
+                            <label>&nbsp;</label>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="plCheckbox" name="plCheckbox">
+                              <label class="form-check-label" for="plCheckbox">PL</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <label for="filtering-select-model">Model:</label>
+                            <select class="form-control" id="filtering-select-model" name="model">
+                              <option value="">Wybierz model</option>
+                              <!-- Dodaj opcje modeli samochodowych tutaj -->
+                            </select>
+                          </div>
+                          <div class="col">
+                            <label for="distMin">Przebieg:</label>
+                            <input type="number" class="form-control" id="distMin" name="distMin" placeholder="Min">
+                          </div>
+                          <div class="col">
+                            <label for="distMax">&nbsp;</label>
+                            <input type="number" class="form-control" id="distMax" name="distMax" placeholder="Max">
+                          </div>
+                          <div class="col">
+                            <label>&nbsp;</label>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="noAccCheckbox" name="noAccCheckbox">
+                              <label class="form-check-label" for="noAccCheckbox">Bezwypadkowy</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <label for="fuel">Rodzaj paliwa:</label>
+                            <select class="form-control" id="fuel" name="fuel">
+                              <option value="">Wybierz rodzaj paliwa</option>
+                              <!-- Dodaj opcje rodzajów paliwa tutaj -->
+                            </select>
+                          </div>
+                          <div class="col">
+                            <label for="engCapMin">Pojemność silnika:</label>
+                            <input type="number" class="form-control" id="engCapMin" name="engCapMin" placeholder="Min">
+                          </div>
+                          <div class="col">
+                            <label for="engCapMax">&nbsp;</label>
+                            <input type="number" class="form-control" id="engCapMax" name="engCapMax" placeholder="Max">
+                          </div>
+                          <div class="col">
+                            <label>&nbsp;</label>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="firstOwnCheckbox" name="firstOwnCheckbox">
+                              <label class="form-check-label" for="firstOwnCheckbox">Pierwszy właściciel</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <label for="gearbox">Skrzynia biegów:</label>
+                            <select class="form-control" id="gearbox" name="gearbox">
+                              <option value="">Wybierz rodzaj skrzyni biegów</option>
+                              <!-- Dodaj opcje rodzajów skrzyń biegów tutaj -->
+                            </select>
+                          </div>
+                          <div class="col">
+                            <label for="powMin">Moc:</label>
+                            <input type="number" class="form-control" id="powMin" name="powMin" placeholder="Min">
+                          </div>
+                          <div class="col">
+                            <label for="powMax">&nbsp;</label>
+                            <input type="number" class="form-control" id="powMax" name="powMax" placeholder="Max">
+                          </div>
+                        </div>
+                  <div class="row">
+                    <div class="col">
+                      <label for="priceMin">Cena:</label>
+                      <input type="number" class="form-control" id="priceMin" name="priceMin" placeholder="Min">
+                    </div>
+                    <div class="col">
+                      <label for="priceMax">&nbsp;</label>
+                      <input type="number" class="form-control" id="priceMax" name="priceMax" placeholder="Max">
+                    </div>
+                    
+                  </div>
+                  
+                          <div class="col">
+                                          <label>&nbsp;</label>
+                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                      </form>
+        </div>
+    </div>
 </div>
-<script type="module" src="js/brands.json"></script>
+
 <script type="module" src="js/Index.js"></script>
+<script type="module" src="js/writeModels.js"></script>

@@ -15,9 +15,21 @@ public class CarsController : Controller
         _logger = logger;
     }
 
+    [Authorize(Roles = "Admin")]
     public IActionResult AllCars()
     {
         return View();
+    }
+
+    public ActionResult AddCar()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public ActionResult AddCar(IFormCollection collection)
+    {
+        return Ok("1");
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

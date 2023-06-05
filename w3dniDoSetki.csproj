@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <None Include="wwwroot\images\1920x550_bg1.jpg" />
+      <None Include="wwwroot\js\writeModels.js" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,11 +28,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="JSON" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Content Update="wwwroot\js\brands.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\js\models.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

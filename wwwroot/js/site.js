@@ -2,19 +2,19 @@
 const urlParams = new URLSearchParams(queryString);
 const token = urlParams.get('token');
 function setCookie(name,value,days) {
-    var expires = "";
+    let expires = "";
     if (days) {
-        var date = new Date();
+        let date = new Date();
         date.setTime(date.getTime() + (days*24*60*60*1000));
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
+        let c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1,c.length);
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
@@ -29,3 +29,19 @@ if (token != null)
     eraseCookie("token");
     setCookie("token", "Bearer " + token, 7);
 }
+
+headers.append("Authorization", getCookie("token"));
+
+var url = 'https://localhost:7166/';
+
+$.ajax({
+    url: url,
+    dataType: 'jsonp',
+    beforeSend: function (xhr) {
+        // set header if JWT is set
+        if ($window.sessionStorage.token) {
+            xhr.setRequestHeader("Authorization", getCookie("token"));
+        }
+
+    }
+});

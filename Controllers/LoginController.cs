@@ -28,7 +28,9 @@ public class LoginController : Controller
         LoginDto LoginData = new LoginDto(collection["Email"], collection["Password"]);
         try
         {
-            return RedirectToAction("Index", "Home", new { token = _userService.Login(LoginData) });
+            var Token = _userService.Login(LoginData);
+            Response.Headers.Add("Set-Cookie", Token);
+            return RedirectToAction("Index", "Home", new { token = Token });
         }
         catch (Exception)
         {
