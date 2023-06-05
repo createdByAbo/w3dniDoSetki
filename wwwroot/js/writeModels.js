@@ -9,7 +9,7 @@ document.getElementById("filtering-select-brand").addEventListener('change', fun
     {
         let option = document.createElement("option");
         option.innerHTML = data[parseInt(index) + 1][i];
-        option.value = i.toString();
+        option.value = data[parseInt(index) + 1][i];
         option.id = "filtering-select-brand-" + i;
         document.getElementById("filtering-select-model").appendChild(option);
     }

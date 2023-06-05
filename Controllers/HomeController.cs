@@ -10,16 +10,24 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly ICarBrandsService _carBrandsService;
     private readonly ICarModelsService _carModelsService;
+    private readonly W3dnidosetkiContext _context;
 
-    public HomeController(ILogger<HomeController> logger, ICarBrandsService carBrandsService)
+    public HomeController(ILogger<HomeController> logger, ICarBrandsService carBrandsService, W3dnidosetkiContext context)
     {
         _logger = logger;
+        _context = context;
         _carBrandsService = carBrandsService;
     }
 
-    public IActionResult Index()
+    public ActionResult Index()
     {
         _carBrandsService.WriteBrandsToJson();
+        return View();
+    }
+    
+    [HttpPost]
+    public ActionResult Index(IFormCollection collection)
+    {
         return View();
     }
 

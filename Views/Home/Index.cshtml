@@ -6,7 +6,7 @@
 <div class="align-items-lg-center" id="banner">
 	<div class="container-fluid">
         <div class="antinigger">
-            <form class="container">
+            <form class="container" method="post">
                         <div class="row">
                           <div class="col">
                             <label for="filtering-select-brand">Marka:</label>
@@ -57,8 +57,12 @@
                           <div class="col">
                             <label for="fuel">Rodzaj paliwa:</label>
                             <select class="form-control" id="fuel" name="fuel">
-                              <option value="">Wybierz rodzaj paliwa</option>
-                              <!-- Dodaj opcje rodzajów paliwa tutaj -->
+                              <option>Wszystkie</option>
+                              <option>Diesel</option>
+                              <option>Benzyna</option>
+                              <option>LPG</option>
+                              <option>Hybrid</option>
+                              <option>Elektryczny</option>
                             </select>
                           </div>
                           <div class="col">
@@ -81,8 +85,10 @@
                           <div class="col">
                             <label for="gearbox">Skrzynia biegów:</label>
                             <select class="form-control" id="gearbox" name="gearbox">
-                              <option value="">Wybierz rodzaj skrzyni biegów</option>
-                              <!-- Dodaj opcje rodzajów skrzyń biegów tutaj -->
+                              <option>Wszystkie</option>
+                              <option>Automat</option>
+                              <option>Manual</option>
+                              <option>Bezstopniowa</option>
                             </select>
                           </div>
                           <div class="col">
@@ -94,17 +100,25 @@
                             <input type="number" class="form-control" id="powMax" name="powMax" placeholder="Max">
                           </div>
                         </div>
-                  <div class="row">
-                    <div class="col">
-                      <label for="priceMin">Cena:</label>
-                      <input type="number" class="form-control" id="priceMin" name="priceMin" placeholder="Min">
-                    </div>
-                    <div class="col">
-                      <label for="priceMax">&nbsp;</label>
-                      <input type="number" class="form-control" id="priceMax" name="priceMax" placeholder="Max">
-                    </div>
-                    
-                  </div>
+              <div class="row">
+                <div class="col">
+                  <label for="condition">Stan</label>
+                  <select class="form-control" name="condition" id="condition">
+                    <option>Wszystkie</option>
+                    <option>Nowy</option>
+                    <option>Używany</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="priceMin">Cena:</label>
+                  <input type="number" class="form-control" id="priceMin" name="priceMin" placeholder="Min">
+                </div>
+                <div class="col">
+                  <label for="priceMax">&nbsp;</label>
+                  <input type="number" class="form-control" id="priceMax" name="priceMax" placeholder="Max">
+                </div>
+
+              </div>
                   
                           <div class="col">
                                           <label>&nbsp;</label>
