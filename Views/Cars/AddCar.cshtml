@@ -1,5 +1,4 @@
 @using w3dniDoSetki.Services
-@model dynamic
 @inject ICarsService CarsService
 
 @{
@@ -7,4 +6,143 @@
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<div class="container-fluid">
+  <div class="antinigger">
+    <form class="container" method="post">
+            
+    </form>
+          
+    <form style="margin: 2vh" asp-controller="Cars" asp-action="AddCar" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col">
+          <label for="filtering-select-brand">Marka:</label>
+          <select class="form-control" id="filtering-select-brand" name="brand">
+            <option value="5">Audi</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="yearMin">Rocznik:</label>
+          <input type="number" class="form-control" id="yearMin" name="yearMin" placeholder="Min">
+        </div>
+        <div class="col">
+          <label for="fuelRateInCity">spalanie w mieście</label>
+          <input type="number" class="form-control" id="fuelRateInCity" name="fuelRateInCity" placeholder="spalanie w mieście">
+        </div>
+        <div class="col">
+          <label>&nbsp;</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="plCheckbox" name="plCheckbox">
+            <label class="form-check-label" for="plCheckbox">PL</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="filtering-select-model">Model:</label>
+          <select class="form-control" id="filtering-select-model" name="model">
+            <option value="A8">A8</option>
+            <!-- Dodaj opcje modeli samochodowych tutaj -->
+          </select>
+        </div>
+        <div class="col">
+          <label for="distMin">Przebieg:</label>
+          <input type="number" class="form-control" id="distMin" name="distMin" placeholder="Min">
+        </div>
+        <div class="col">
+          <label for="fuelRateInTrip">spalanie w trasie</label>
+          <input type="number" class="form-control" id="fuelRateInTrip" name="fuelRateInTrip" placeholder="spalanie w trasie">
+        </div>
+        <div class="col">
+          <label>&nbsp;</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="noAccCheckbox" name="noAccCheckbox">
+            <label class="form-check-label" for="noAccCheckbox">Bezwypadkowy</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="fuel">Rodzaj paliwa:</label>
+          <select class="form-control" id="fuel" name="fuel">
+            <option>Wszystkie</option>
+            <option>Diesel</option>
+            <option>Benzyna</option>
+            <option>LPG</option>
+            <option>Hybrid</option>
+            <option>Elektryczny</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="engCapMin">Pojemność silnika:</label>
+          <input type="number" class="form-control" id="engCapMin" name="engCapMin" placeholder="Min">
+        </div>
+        <div class="col">
+          <label for="vin">numer VIN</label>
+          <input type="number" class="form-control" id="vin" name="vin" placeholder="numer vin">
+        </div>
+        <div class="col">
+          <label>&nbsp;</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="firstOwnCheckbox" name="firstOwnCheckbox">
+            <label class="form-check-label" for="firstOwnCheckbox">Pierwszy właściciel</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="gearbox">Skrzynia biegów:</label>
+          <select class="form-control" id="gearbox" name="gearbox">
+            <option>Wszystkie</option>
+            <option>Automat</option>
+            <option>Manual</option>
+            <option>Bezstopniowa</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="powMin">Moc:</label>
+          <input type="number" class="form-control" id="powMin" name="powMin" placeholder="Min">
+        </div>
+        <div class="col">
+          <label for="numOfDoors">Liczba drzwi</label>
+          <input type="number" class="form-control" id="numOfDoors" name="numOfDoors" placeholder="liczba drzwi">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="condition">Stan</label>
+          <select class="form-control" name="condition" id="condition">
+            <option>Wszystkie</option>
+            <option>Nowy</option>
+            <option>Używany</option>
+          </select>
+          <label for="files">Dodaj zdjęcia</label>
+          
+                  <input type="file" class="form-control" name="files" id="files" multiple accept="image/*"/><br />
+        </div>
+        <div class="col">
+          <label for="price">Podaj cenę (brutto)</label>
+          <input type="number" class="form-control" name="price" id="price" placeholder="Cena">
+          <label for="title">Podaj tytuł oferty</label>
+          <input type="text" class="form-control" name="title" id="title" placeholder="Podaj tytuł oferty">
+          <label for="1stReg">1 rejestracja (rok)</label>
+          <input type="number" class="form-control" name="1stReg" id="1stReg" placeholder="1 rejestracja">
+        </div>
+        <div class="col">
+          <label for="numOfSeats">liczba miejsc</label>
+          <input type="number" class="form-control" id="numOfSeats" name="numOfSeats" placeholder="liczba miejsc">
+          <label for="description">opis</label>
+          <input type="text" style="height: 110%" class="form-control" id="description" name="description" placeholder="opis">
+          
+        </div>
+              
+      </div>
+      <br/>
+      
+                                
+      <div class="col">
+        <label>&nbsp;</label>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

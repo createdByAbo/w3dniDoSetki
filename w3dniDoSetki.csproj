@@ -41,4 +41,8 @@
       <_ContentIncludedByDefault Remove="Pages\Cars\AllCars.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="images\Uploads" />
+    </ItemGroup>
+
 </Project>

@@ -8,6 +8,7 @@ namespace w3dniDoSetki.Services;
 public interface ICarModelsService
 {
     string WriteModelsToJson();
+    List<int> GetModelAndBrandNameIdByModelName(string model);
 }
 public class CarModelsService : ICarModelsService
 {
@@ -16,6 +17,15 @@ public class CarModelsService : ICarModelsService
     public CarModelsService(W3dnidosetkiContext context)
     {
         _context = context;
+    }
+
+    public List<int> GetModelAndBrandNameIdByModelName(string model)
+    {
+        List<int> res = new List<int>();
+        var data = _context.Carmodels.Where(cm => cm.Model == model).FirstOrDefault();
+        res.Add(data.Brandid);
+        res.Add(data.Id);
+        return res;
     }
 
     public string WriteModelsToJson()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using dotenv.net;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using w3dniDoSetki.Entities;
 
@@ -32,7 +33,6 @@ public partial class W3dnidosetkiContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql(Env.GetString("DBCONN"));
-    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -60,7 +60,7 @@ public partial class W3dnidosetkiContext : DbContext
             entity.HasKey(e => e.Id).HasName("cars_pk");
 
             entity.ToTable("Cars");
-
+        
             entity.HasIndex(e => e.Description, "cars_description_uindex").IsUnique();
 
             entity.HasIndex(e => e.Id, "cars_id_uindex").IsUnique();
@@ -85,17 +85,19 @@ public partial class W3dnidosetkiContext : DbContext
             entity.Property(e => e.SellerId).HasColumnName("sellerId");
             entity.Property(e => e.StOwner).HasColumnName("stOwner");
             entity.Property(e => e.StRegistration).HasColumnName("stRegistration");
+            entity.Property(e => e.fuel).HasColumnName("fuel");
+            entity.Property(e => e.gearboxType).HasColumnName("gearboxType");
             entity.Property(e => e.Title)
                 .HasMaxLength(30)
                 .HasColumnName("title");
             entity.Property(e => e.Vin)
                 .HasMaxLength(17)
                 .HasColumnName("vin");
-
             entity.HasOne(d => d.Seller).WithMany(p => p.Car1s)
                 .HasForeignKey(d => d.SellerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_userid");
+            entity.Property(e => e.condition);
         });
 
         modelBuilder.Entity<Carmodel>(entity =>

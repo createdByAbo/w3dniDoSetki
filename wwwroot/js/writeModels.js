@@ -13,5 +13,5 @@ document.getElementById("filtering-select-brand").addEventListener('change', fun
         option.id = "filtering-select-brand-" + i;
         document.getElementById("filtering-select-model").appendChild(option);
     }
-
+    
 });

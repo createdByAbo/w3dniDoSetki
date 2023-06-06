@@ -7,7 +7,7 @@ public partial class Carmodel
 {
     public int Id { get; set; }
 
-    public int? Brandid { get; set; }
+    public int Brandid { get; set; }
 
     public string? Model { get; set; }
 

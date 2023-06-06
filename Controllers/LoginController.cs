@@ -1,5 +1,3 @@
-using DevOne.Security.Cryptography.BCrypt;
-using DotNetEnv;
 using Microsoft.AspNetCore.Mvc;
 using w3dniDoSetki.Models.DTOs;
 using w3dniDoSetki.Services;
@@ -29,12 +27,19 @@ public class LoginController : Controller
         try
         {
             var Token = _userService.Login(LoginData);
-            Response.Headers.Add("Set-Cookie", Token);
-            return RedirectToAction("Index", "Home", new { token = Token });
+            Response.Cookies.Append("X-Access-Token", Token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+            return RedirectToAction("Index", "Home");
         }
         catch (Exception)
         {
             return View("Error");
         }
+    }
+
+    [HttpGet]
+    public ActionResult Logout()
+    {
+        Response.Cookies.Delete("X-Access-Token");
+        return RedirectToAction("Index", "Home");
     }
 }

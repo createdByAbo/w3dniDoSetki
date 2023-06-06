@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace w3dniDoSetki.Entities;
 
 public partial class Car1
 {
+
     public int Id { get; set; }
 
     public int SellerId { get; set; }
@@ -12,6 +14,9 @@ public partial class Car1
     public int Model { get; set; }
 
     public short NumOfDoors { get; set; }
+    public string fuel { get; set; }
+    
+    public string gearboxType { get; set; }
 
     public short NumOfSeats { get; set; }
 
@@ -26,6 +31,7 @@ public partial class Car1
     public short EnginePower { get; set; }
 
     public string? Vin { get; set; }
+    public string? condition { get; set; }
 
     public bool NoAccidents { get; set; }
 

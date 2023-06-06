@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor httpContextaccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -18,25 +20,63 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Cars" asp-action="AllCars">Osobowe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" id="nav-item-motorcycle" asp-area="" asp-controller="Home" asp-action="">Motocykle</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav flex-grow-2">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Login" asp-action="Index">Zaloguj</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Register" asp-action="Index">Zarejestruj się</a>
-                    </li>
+            @{
+                var cookieExists = false;
+                if (httpContextaccessor.HttpContext.Request.Cookies["X-Access-Token"] != null)
+                {
+                    cookieExists = true;
+                }
+            }
+            
+            @if (cookieExists)
+            {
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                    
+                                    <ul class="navbar-nav flex-grow-1">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Cars" asp-action="AllCars">Osobowe</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-light" id="nav-item-motorcycle" asp-area="" asp-controller="Cars" asp-action="AddCar">Dodaj Ogłoszenie</a>
+                                        </li>
+                                    </ul>
+                    <ul class="navbar-nav flex-grow-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Login" asp-action="Index">Moje konto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Register" asp-action="Index">Moje ogłoszenia</a>
+                        </li>
+                        <li class="nav-item">
+                                                    
+                            <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Login" asp-action="Logout">Wyloguj</a>
+                        </li>
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     
-                </ul>
-            </div>
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Cars" asp-action="AllCars">Osobowe</a>
+                        </li>
+                        <li class="nav-item">
+                                            <a class="nav-link text-light" id="nav-item-motorcycle" asp-area="" asp-controller="Cars" asp-action="AddCar">Dodaj Ogłoszenie</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-grow-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Login" asp-action="Index">Zaloguj</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" id="nav-item-pass-cars" asp-area="" asp-controller="Register" asp-action="Index">Zarejestruj się</a>
+                        </li>
+
+                    </ul>
+                </div>
+            }
         </div>
     </nav>
 </header>
