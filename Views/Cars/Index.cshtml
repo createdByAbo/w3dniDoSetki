@@ -1,0 +1,50 @@
+@model w3dniDoSetki.Models.DTOs.CarViewDTO;
+
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+
+
+@{
+    var data = Model;
+    string path = data.path.Replace("wwwroot", "");
+    
+    <head>
+    <title></title>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/css/car.css"/>
+</head>
+    <body>
+<div>
+    <div class="single_product">
+        <div class="container-fluid">
+            <div class="product_image_side">
+                <div class="row">
+                    <div class="col-md-5"> <img src="@data.path.Replace("wwwroot", "")" name="stage" width="400" height="400"/>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="product_description text-left">
+                            <div class="product_name">@data.Title</div>
+                            <div class="mt-2">@data.Price PLN<span class="product_price"></span> </div>
+                            <hr class="singleline">
+                            <div>Moc silnika - <span class="car_service">@data.EnginePow KM</span></div>
+                            <div> Pojemność silnika - <span class="car_seats">@data.EngineCapa cm3</span></div>
+                            <div> Skrzynia biegów - <span class="car_transmission">@data.gearboxType</span></div>
+                            <div>Przebieg - <span class="car_engine">@data.Milage KM</span></div>
+                            <div> Rocznik - <span class="car_bhp">@data.Yeat.Year</span></div>
+                            <div>
+                                <div class="col-xs-6 mt-5"> <button type="button" class="btn btn-primary shop-button">Numer telefonu : @data.PhoneNumber</button> </div>
+                            </div>
+                            <div>
+                                <p>@data.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+}

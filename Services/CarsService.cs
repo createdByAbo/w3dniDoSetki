@@ -7,7 +7,7 @@ namespace w3dniDoSetki.Services;
 
 public interface ICarsService
 {
-    List<Car1> GetAllCars(int limit);
+    List<Car1> GetAllCars(int skip, int limit);
 }
 
 public class CarsService : ICarsService
@@ -19,9 +19,10 @@ public class CarsService : ICarsService
         _context = context;
     }
 
-    public List<Car1> GetAllCars(int limit)
+    public List<Car1> GetAllCars(int skip,int limit)
     {
         var cars = _context.Cars1
+            .Skip(skip)
             .Take(limit)
             .ToList();
         return cars;

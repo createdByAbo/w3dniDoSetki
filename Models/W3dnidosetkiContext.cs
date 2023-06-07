@@ -86,6 +86,8 @@ public partial class W3dnidosetkiContext : DbContext
             entity.Property(e => e.StOwner).HasColumnName("stOwner");
             entity.Property(e => e.StRegistration).HasColumnName("stRegistration");
             entity.Property(e => e.fuel).HasColumnName("fuel");
+            entity.Property(e => e.path).HasColumnName("path");
+            entity.Property(e => e.price).HasColumnName("price");
             entity.Property(e => e.gearboxType).HasColumnName("gearboxType");
             entity.Property(e => e.Title)
                 .HasMaxLength(30)

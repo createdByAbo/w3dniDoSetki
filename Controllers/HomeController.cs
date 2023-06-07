@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using w3dniDoSetki.Models;
+using w3dniDoSetki.Models.DTOs;
 using w3dniDoSetki.Services;
 
 namespace w3dniDoSetki.Controllers;
@@ -12,10 +14,11 @@ public class HomeController : Controller
     private readonly ICarModelsService _carModelsService;
     private readonly W3dnidosetkiContext _context;
 
-    public HomeController(ILogger<HomeController> logger, ICarBrandsService carBrandsService, W3dnidosetkiContext context)
+    public HomeController(ILogger<HomeController> logger,ICarModelsService carModelsService,  ICarBrandsService carBrandsService, W3dnidosetkiContext context)
     {
         _logger = logger;
         _context = context;
+        _carModelsService = carModelsService;
         _carBrandsService = carBrandsService;
     }
 
@@ -28,7 +31,15 @@ public class HomeController : Controller
     [HttpPost]
     public ActionResult Index(IFormCollection collection)
     {
-        return View();
+        foreach (var col in collection)
+        {
+            Response.Cookies.Append(col.Key, col.Value.ToString());
+        }
+        Response.Cookies.Append("noAccidents", collection["noAcc"].Count == 0 ? "off" : "on");
+        Response.Cookies.Append("firstOwn", collection["firstOwnCheckbox"].Count == 0 ? "off" : "on");
+        Response.Cookies.Append("plCheckbox", collection["plCheckbox"].Count == 0 ? "off" : "on");
+
+        return RedirectToAction("FilteredCars", "Cars");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,10 +1,7 @@
-@using w3dniDoSetki.Services
-@using w3dniDoSetki.Entities
 @{
     Layout = "_Layout";
 }
 @model List<w3dniDoSetki.Models.DTOs.CarCardDto>;
-@inject ICarsService CarsService;
 @{
     var data = Model;
     for (int i = 0; i < Model.Count; i++)
@@ -12,9 +9,9 @@
         {
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
-                    <a class="col-md-4" href="./?id=@data[i].carId">
+                    <div class="col-md-4">
                         <img src="@data[i].imgPath.Replace("wwwroot", "")" class="card-img" alt="...">
-                    </a>
+                    </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">@data[i].Price PLN</h5>

@@ -15,14 +15,14 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                                    <div class="form-control mx-auto" style="width: 20%;">
-                                        @Html.EditorFor(dto => dto.Email)
-                                        @Html.LabelFor(dto => dto.Email)
-                                    </div>
-                                    <div class="form-control mx-auto" style="width: 20%;">
-                                        @Html.EditorFor(dto => dto.Password)
-                                        @Html.LabelFor(dto => dto.Password)
-                                    </div>
+                <div class="form-control mx-auto" style="width: 20%;">
+                    @Html.EditorFor(dto => dto.Email)
+                    @Html.LabelFor(dto => dto.Email)
+                </div>
+                <div class="form-control mx-auto" style="width: 20%;">
+                    @Html.EditorFor(dto => dto.Password)
+                    @Html.LabelFor(dto => dto.Password)
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

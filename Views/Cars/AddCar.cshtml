@@ -8,16 +8,11 @@
 
 <div class="container-fluid">
   <div class="antinigger">
-    <form class="container" method="post">
-            
-    </form>
-          
     <form style="margin: 2vh" asp-controller="Cars" asp-action="AddCar" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col">
           <label for="filtering-select-brand">Marka:</label>
           <select class="form-control" id="filtering-select-brand" name="brand">
-            <option value="5">Audi</option>
           </select>
         </div>
         <div class="col">
@@ -40,8 +35,6 @@
         <div class="col">
           <label for="filtering-select-model">Model:</label>
           <select class="form-control" id="filtering-select-model" name="model">
-            <option value="A8">A8</option>
-            <!-- Dodaj opcje modeli samochodowych tutaj -->
           </select>
         </div>
         <div class="col">
@@ -117,7 +110,7 @@
           </select>
           <label for="files">Dodaj zdjęcia</label>
           
-                  <input type="file" class="form-control" name="files" id="files" multiple accept="image/*"/><br />
+          <input type="file" class="form-control" name="files" id="files" multiple accept="image/*"/><br />
         </div>
         <div class="col">
           <label for="price">Podaj cenę (brutto)</label>
@@ -146,3 +139,5 @@
     </form>
   </div>
 </div>
+<script type="module" src="~/js/Index.js"></script>
+<script src="~/js/writeModels.js"></script>

@@ -6,9 +6,9 @@ namespace w3dniDoSetki.Entities;
 
 public partial class Car1
 {
-
     public int Id { get; set; }
 
+    public string path { get; set; }
     public int SellerId { get; set; }
 
     public int Model { get; set; }
@@ -17,6 +17,7 @@ public partial class Car1
     public string fuel { get; set; }
     
     public string gearboxType { get; set; }
+    public int price { get; set; }
 
     public short NumOfSeats { get; set; }
 
